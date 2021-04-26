@@ -1,0 +1,30 @@
+{% extends "encyclopedia/layout.html" %}
+{% include "entries" %}
+{% include "util" %}
+
+  {% block title %}
+   Edit page
+  {% endblock %}
+     
+{% block body %}
+   <h1>Create a new wiki page</h1><br><br>
+   <h3>Instructions:</h3>
+   <h5>-->title should be unique</h5><br><br>
+   <form action="{% url 'editted' %}" method="post">
+    {% csrf_token %}
+     <button type="submit" style="position: absolute;left: 70%;top: 30%;width: 150px;height: 40px;background-color: pink
+     ">Replace & Save</button>
+     Title:<br><br>
+      
+     <input type="text" name="title" value="{{ name }}" /><br><br><br><br>
+     <textarea rows="1" cols="1" name="content" placeholder="<!-- heading -->
+       <!-- enter content here -->">
+      {{ edit_content }}
+     </textarea><br><br>
+    </form>
+    <form action="{% url 'cancel' %}" method="post">
+      {% csrf_token %}
+    <button type="submit" style="position: absolute;left: 30%;top: 100%;width: 120px;height: 30px;background-color: orange">cancel</button>
+    </form>
+    
+{% endblock %}

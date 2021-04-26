@@ -1,0 +1,25 @@
+{% extends "encyclopedia/layout.html" %}
+{% include "entries" %}
+{% include "util" %}
+
+  {% block title %}
+    {{ entry_name }}-wiki
+  {% endblock %}
+     
+{% block body %}
+  <div class="b">
+    <form action="{% url 'edit' %}" method="post">
+      {% csrf_token %}
+    <button style="position: absolute;top: 1%;right: 10%;width: 100px" type="submit" name="q" value="{{ entry_name }}">Edit</button>
+  </form>
+  <form action="{% url 'delete' %}" method="post">
+     {% csrf_token %}
+    <button style="position: absolute;top: 1%;right: 2%;width: 100px" name="p" value="{{ entry_name }}">Delete</button>
+  </form>
+   </div>  
+  <div class="content-markdown">
+      {{ content }}
+  
+    </div>
+    
+{% endblock %}

@@ -1,0 +1,34 @@
+{% extends "encyclopedia/layout.html" %}
+{% include "entries" %}
+{% include "util" %}
+
+  {% block title %}
+   new page
+  {% endblock %}
+     
+{% block body %}
+   <h1>Create a new wiki page</h1><br>
+   <h3 style="color: red;font-size: 30px;font-family: bold">Instructions:</h3>
+   <h5 style="color: orange;font-size: 20px;font-family: italic">
+    1.title should be unique
+    2. Write the content of the wiki in markdown format it will processed HTML
+  </h5><br>
+   <form action="{% url 'submitted' %}" method="post">
+    {% csrf_token %}
+     <button type="submit" style="position: absolute;left: 70%;top: 30%;width: 120px;height: 40px;background-color: pink">Save</button>
+     Title:<br><br>
+      
+     <input type="text" name="title" /><br><br><br><br>
+     <textarea rows="10" cols="5" name="content" placeholder="<!-- heading -->
+       <!-- enter content here -->">
+       #<!-- heading -->
+       <!-- enter content here -->
+
+     </textarea><br><br>
+    </form>
+    <form action="{% url 'cancel' %}" method="post">
+      {% csrf_token %}
+    <button type="submit" style="position: absolute;left: 30%;top: 100%;width: 120px;height: 30px;background-color: orange">cancel</button>
+    </form>
+    
+{% endblock %}

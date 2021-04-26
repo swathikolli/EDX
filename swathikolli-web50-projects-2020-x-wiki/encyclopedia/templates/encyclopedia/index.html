@@ -1,0 +1,18 @@
+{% extends "encyclopedia/layout.html" %}
+{% include "entries" %}
+{% include "util" %}
+{% block title %}
+    encyclopedia
+
+{% endblock %}
+<link href="icon.jpg" type="Image" rel="icon">
+{% block body %}
+    <h1>All Pages</h1>
+
+    <ul>
+        {% for entry in entries %}
+          	<a href="http://127.0.0.1:8000/wiki/{{ entry }}"><li>{{ entry }}</li></a>
+          {% endfor %}
+    </ul>
+
+{% endblock %}

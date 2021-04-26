@@ -1,0 +1,19 @@
+{% extends "encyclopedia/layout.html" %}
+{% include "entries" %}
+{% include "util" %}
+
+  {% block title %}
+    {{ entry_name }}-wiki
+  {% endblock %}
+     
+{% block body %}
+  <div class="b">
+    <button style="position: absolute;top: 1%;right: 10%;width: 100px">Edit</button>
+    <button style="position: absolute;top: 1%;right: 2%;width: 100px">Delete</button>
+   </div>  
+  <div class="content-markdown">
+      {{ content }}
+  
+    </div>
+    
+{% endblock %}

@@ -1,0 +1,23 @@
+{% extends "encyclopedia/layout.html" %}
+{% include "entries" %}
+{% include "util" %}
+
+  {% block title %}
+    {{ entry_name }}-search results
+  {% endblock %}
+     
+{% block body %}
+    
+  <div>
+    <h3 style="color: red;font-size: 30px;font-family:bold">Search results</h3>
+    <h4 style="color: green;font-size: 30px;font-family:italic">Showing results with "{{ entry_name }}"</h4>
+    <ul>
+      {% csrf_token %}
+     {% for k in name_content %}
+       <li style="color: blue;font-size: 30px;font-family:monospace;"><a href="http://127.0.0.1:8000/wiki/{{ k }}"> {{ k }} </a></li>
+      {% endfor %}
+    </ul>
+  
+    </div>
+    
+{% endblock %}

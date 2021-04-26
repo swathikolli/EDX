@@ -1,0 +1,68 @@
+{% load static %}
+
+<!DOCTYPE html>
+
+<html lang="en">
+    <head>
+        
+        <title>{% block title %}{% endblock %}</title>
+        
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+        <link href="{% static 'encyclopedia/styles.css' %}" rel="stylesheet">
+       {% block head %}{% endblock %} 
+        <link href="wiki_icon.png" type="Image" rel="icon" style="width: 20px;height: 10px">
+       <script type="text/javascript">
+            function clickyClick() {
+                  url = 'http://127.0.0.1:8000/wiki/' + document.getElementById("q").value
+                 window.open(url, '_blank');
+             }
+         </script>
+    </head>
+    <body>
+        <div class="row">
+            <div class="sidebar col-lg-2 col-md-3">
+                <h2 style="color: black;font-family: bold">Wiki</h2>
+                <form action="{% url 'search' %}" method="post">
+                    {% csrf_token %}
+                    <input class="search" type="text" id="q" placeholder="Search Encyclopedia" name="sub">
+                    
+                </form>
+                <div class="s">
+                    <a href="{% url 'index' %}">Home</a>
+                </div>
+                <div class="s">
+                   <a href="{% url 'newpage' %}">Create New Page</a>
+                </div>
+                <div class="s">
+                   <a href="{% url 'random' %}"> Random Page</a>
+                </div><br><br>
+                <bold><hr><hr></bold>
+                <div class="s">
+                   <a href=""> About owner</a>
+                </div>
+                {% block nav %}
+                {% endblock %}
+            </div>
+            <div class="main col-lg-10 col-md-9">
+                {% block body %}
+                {% endblock %}
+            </div>
+        </div>
+    <script
+              src="http://code.jquery.com/jquery-1.12.4.min.js"
+              integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ="
+              crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/marked/1.1.1/marked.min.js "></script>
+    <script type="text/javascript">
+        $(document).ready(function(){
+            $(".content-markdown").each(function(){
+                var content = $(this).text()
+                console.log(content)
+                var markedContent = marked(content)
+                console.log(markedContent)
+                $(this).html(markedContent)
+            })
+        })
+    </script>
+    </body>
+</html>

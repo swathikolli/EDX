@@ -1,0 +1,20 @@
+{% extends "encyclopedia/layout.html" %}
+{% include "entries" %}
+{% include "util" %}
+
+  {% block title %}
+   new page
+  {% endblock %}
+     
+{% block body %}
+   <h1 >Create a new wiki page</h1><br><br>
+   <h3 style="color: red;font-size: 30px;font-family: bold">Instructions:</h3>
+   <h5 style="color: orange;font-size: 20px;font-family: italic">-->title should be unique</h5><br><br>
+   <form action="{% url 'newpage' %}" method="post">
+    {% csrf_token %}
+    <p>Your entered Title page is alredy created.To create a new entry click "ok" button.</p>
+     <button type="submit" style="position: absolute;left: 40%;top: 50%;width: 120px;height: 50px;background-color: yellow">Ok</button>
+     <br><br>
+    </form>
+    
+{% endblock %}
